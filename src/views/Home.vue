@@ -41,37 +41,41 @@
         <div class="col-12 mb-2 mt-2">
           <span class="btn-title">สายพันธ์ุแมวมาใหม่</span>
         </div>
-        <div class="col-6 col-md-4 mb-2" v-for="item in 4" :key="item" @click="$router.push('/view')">
+        <div
+          class="col-6 col-md-4 mb-2"
+          v-for="item in catagoryCat"
+          :key="item"
+          @click="$router.push(`/view/${item.id}`)"
+        >
           <div class="product-card">
             <div class="product-img">
-              <img
-                src="https://i.natgeofe.com/n/3861de2a-04e6-45fd-aec8-02e7809f9d4e/02-cat-training-NationalGeographic_1484324_square.jpg"
-                style="width: 100%"
-              />
+              <img :src="item.photos[0]" style="width: 100%" />
             </div>
             <div class="product-info">
-              Lorem ipsum dolor sit amet consectetur.
+              {{ item.title }}
             </div>
-            <button class="btn-detail">Detail</button>
+            <button class="btn-detail px-2">Detail</button>
           </div>
         </div>
       </div>
-       <div class="row mt-2">
-        <div class="col-12 mb-2 mt-2">
-          <span class="btn-title">สินค้ามาใหม่</span>
+      <div class="row mt-2">
+        <div class="col-12 mb-2">
+          <span class="btn-title">อุปกรณ์สัตว์เลี้ยง</span>
         </div>
-        <div class="col-6 col-md-4 mb-2" v-for="item in 4" :key="item">
+        <div
+          class="col-6 col-md-4 mb-2"
+          v-for="item in catagoryEquipment"
+          :key="item"
+          @click="$router.push(`/view/${item.id}`)"
+        >
           <div class="product-card">
             <div class="product-img">
-              <img
-                src="https://i.natgeofe.com/n/3861de2a-04e6-45fd-aec8-02e7809f9d4e/02-cat-training-NationalGeographic_1484324_square.jpg"
-                style="width: 100%"
-              />
+              <img :src="item.photos[0]" style="height: 70px" />
             </div>
             <div class="product-info">
-              Lorem ipsum dolor sit amet consectetur.
+              {{ item.name }}
             </div>
-            <button class="btn-detail">Detail</button>
+            <button class="btn-detail px-2">Detail</button>
           </div>
         </div>
       </div>
@@ -80,37 +84,28 @@
 </template>
 
 <script>
-import { createUser } from "@/firebase.config";
+import { getCatCollection, getCatEquipment } from "@/firebase.config";
 export default {
-  setup() {
-    const handleSubmit = async () => {
-      await createUser({
-        username: "test",
-        password: "123456",
-      });
-    };
-    return { handleSubmit };
+  created() {
+    this.initialData();
+  },
+  methods: {
+    async initialData() {
+      this.catagoryCat = await getCatCollection();
+      this.catagoryEquipment = await getCatEquipment();
+    },
   },
   data() {
     return {
-      catagory: [
-        {
-          title: "สายพันธ์ุแมว",
-        },
-        {
-          title: "อาหารแมว",
-        },
-        {
-          title: "ของเล่นแมว",
-        },
-      ],
+      catagoryCat: [],
+      catagoryEquipment: [],
     };
   },
 };
 </script>
 
-<style >
-.home{
+<style scoped>
+.home {
   padding-bottom: 50px;
 }
 .product-card img {
@@ -128,7 +123,7 @@ export default {
   color: black;
   border-radius: 5px;
   border: 0;
-  font-size:0.8em;
+  font-size: 0.8em;
   padding: 2px;
 }
 .catagory-btn {

@@ -1,14 +1,24 @@
 <template>
   <div>
     <div class="row align-items-center footer">
-      <div class="col-4 text-center"><i class="fas fa-store"></i></div>
-      <div class="col-4 text-center"><i class="fas fa-shopping-cart"></i></div>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center" @click="$router.push('/')">
+        <i class="fas fa-store"></i>
+      </div>
+      <div class="col-4 text-center" @click="$router.push('/cart')">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+       <div class="col-4 text-center" @click="$router.push('/profile')" >
         <img src="@/assets/profile.jpg"  width="45" />
       </div>
+      <!-- <div class="col-3 text-center">
+        <i class="fas fa-sign-out-alt" @click="onLogout()"></i>
+      </div> -->
     </div>
   </div>
 </template>
+<script>
+
+</script>
 <style scoped>
 .footer {
   position: fixed;
@@ -24,7 +34,7 @@
   border-radius: 50%;
   padding: 10px;
 }
-.footer img{
-    border-radius: 50%;
+.footer img {
+  border-radius: 50%;
 }
 </style>

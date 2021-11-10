@@ -28,6 +28,10 @@ export default {
   padding: 0;
   margin: 0;
 }
+
+.prev-button , .next-button{
+  display: none;
+}
 .main-content {
   height: calc(100vh - 100px);
   padding: 5px 0px;

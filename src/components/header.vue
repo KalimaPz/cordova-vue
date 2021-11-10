@@ -13,7 +13,7 @@
         <div class="col-6" >
           <img src="@/assets/LogoCatBag.png"  @click="$router.push('/')" width="100" class="mb-2" />
         </div>
-        <div class="col d-flex justify-content-end"><div class="mb-2"><i class="fa fa-envelope" aria-hidden="true"></i></div></div>
+        <div class="col d-flex justify-content-end"><div class="mb-2"><i class="fa fa-envelope" aria-hidden="true" @click="$router.push('/chat')"></i></div></div>
       </div>
     </div>
   </div>

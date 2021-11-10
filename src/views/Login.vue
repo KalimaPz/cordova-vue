@@ -17,7 +17,7 @@
                 <button type="submit" class="mt-2 btn-main" @click="handleSubmit()">Login</button>
               </div>
               <div>
-                <button type="submit" class="mt-2 btn-main">Register</button>
+                <button type="submit" class="mt-2 btn-main" @click="$router.push('/register')">Register</button>
               </div>
             </div>
           </div>
@@ -39,7 +39,9 @@ export default {
   },
   methods:{
     async handleSubmit(){
-     await onLoginCustom(this.username,this.password)
+     let isLogin = await onLoginCustom(this.username,this.password)
+     console.log(isLogin)
+     isLogin ? this.$router.push('/') : ''
     }
   }
 }
@@ -52,6 +54,7 @@ input {
   background: transparent;
   outline: none;
   border: 0;
+  color:#e19c68;
   border-bottom: 2px solid #e19c68;
 }
 .form-login {

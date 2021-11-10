@@ -9,12 +9,12 @@
           <div class="col-12 d-flex justify-content-center align-items-center">
             <div class="form-login">
               <div>E-Mail</div>
-              <input type="text" class="mb-1" />
+              <input type="text" class="mb-1" v-model="username" />
 
               <div>Password</div>
-              <input type="password" />
+              <input type="password" v-model="password" />
               <div>
-                <button type="submit" class="mt-2 btn-main">Login</button>
+                <button type="submit" class="mt-2 btn-main" @click="handleSubmit()">Login</button>
               </div>
               <div>
                 <button type="submit" class="mt-2 btn-main">Register</button>
@@ -26,7 +26,24 @@
     </div>
   </div>
 </template>
-
+<script>
+import { onLoginCustom } from "@/firebase.config";
+export default {
+  async mounted(){
+  },
+  data() {
+    return {
+      username:'',
+      password:''
+    }
+  },
+  methods:{
+    async handleSubmit(){
+     await onLoginCustom(this.username,this.password)
+    }
+  }
+}
+</script>
 <style scoped>
 button {
   width: 100%;

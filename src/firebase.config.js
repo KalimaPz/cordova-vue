@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
+
 // Your web app's Firebase configuration
 const config = {
   apiKey: "AIzaSyClG4r2a3nqYxAZPDEiPck7t-NcIc1rFfk",
@@ -19,6 +20,20 @@ const db = app.firestore()
 
 const userCollecttion = db.collection('users');
 
-export const createUser = (user) =>{
+export const createUser = (user) => {
   return userCollecttion.add(user)
+}
+
+export const onLoginCustom = async (username, password) => {
+  userCollecttion.where("username", "==", `${username}`).where("password", "==", `${password}`).get().then(rs => {
+    if (rs.docs.length > 0) {
+      console.log('ล็อคอินสำเร็จ', rs.docs[0].id)
+      return true
+    } else {
+      alert("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง")
+      return false;
+    }
+  }).catch(function (error) {
+    console.log("ERROR", error);
+  });
 }

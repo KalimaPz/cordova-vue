@@ -8,6 +8,9 @@
             src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F03%2F09%2Fdog-dating-1.jpg"
             style="width: 110px; height: 110px; border-radius: 50%"
           />
+          <div>
+            <button @click=" takeapicture()">Take a Picture</button>
+          </div>
           <h3 style="color: #b06f51">Profile</h3>
         </div>
       </div>
@@ -28,6 +31,17 @@
             <h6>Support</h6>
           </div>
         </div>
+        <div>
+          <button @click="userLocation()">Add Location</button>
+        </div>
+        <div>
+          About This Device
+        </div>
+        <div>
+          <p>Operating System : {{ os }}</p>
+        </div>
+        
+
         <div class="text-center mt-5">
           <button @click=" onLogout() " >Logout</button>
         </div>
@@ -36,8 +50,39 @@
   </div>
 </template>
 <script>
+// import Vue from '../main'
+
 export default {
+
+ data : () => {
+   return {
+     os : ""
+   }
+ },
+created() {
+this.getPlatform()
+},
+
   methods: {
+    userLocation() {
+this.$router.push('/userLocation')
+    },
+    takeapicture(){
+      document.addEventListener("deviceready", () => {
+      console.log('device is ready1')
+      navigator.camera.getPicture(()=> console.log('done'), () => console.log('err'))
+    
+}, false);
+    },
+    getPlatform() {
+      if(window.cordova) {
+        console.log('okay')
+        console.log(window.cordova.platformId)
+        this.os = window.cordova.platformId
+      } else {
+         console.log('error')
+      }
+    },
     onLogout() {
       let isconfirm = confirm("คุณต้องการออกจากระบบ ?");
       if (isconfirm) {

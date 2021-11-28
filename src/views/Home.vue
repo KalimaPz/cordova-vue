@@ -85,11 +85,12 @@
 
 <script>
 import { getCatCollection, getCatEquipment } from "@/firebase.config";
+
+
 export default {
-  created() {
-    this.initialData();
-  },
+
   methods: {
+
     async initialData() {
       this.catagoryCat = await getCatCollection();
       this.catagoryEquipment = await getCatEquipment();
@@ -97,8 +98,10 @@ export default {
   },
   data() {
     return {
+ 
       catagoryCat: [],
       catagoryEquipment: [],
+ 
     };
   },
 };

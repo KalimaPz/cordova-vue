@@ -29,6 +29,8 @@
 
 <script>
 import { createUser } from "@/firebase.config";
+
+
 export default {
   data() {
     return {
@@ -37,6 +39,8 @@ export default {
     }
   },
   methods: {
+  
+
     async handleSubmit(){
       let data = {
         username:this.username,

@@ -8,7 +8,7 @@ import Cart from "../views/Cart.vue";
 import Chat from "../views/Chat.vue";
 import Profile from "../views/Profile.vue";
 import Track from "../views/Track.vue";
-
+import UserLocation from "../views/UserLocation.vue"
 const checkLogin = (to, from, next) => {
   let user = localStorage.getItem('user')
   if (user) {
@@ -99,6 +99,15 @@ const routes = [
       isLoged(to, from, next)
     },
     component: Register,
+  },
+
+  {
+    path: "/userLocation",
+    name: "UserLocation",
+    // beforeEnter: (to, from, next) => {
+    //   isLoged(to, from, next)
+    // },
+    component: UserLocation,
   },
 
 ];
